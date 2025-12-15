@@ -45,6 +45,19 @@ export function ucfirst(string: string) {
     throw error;
 }
 
+export function ucfirstAll(string: string) {
+    const array = string.split(" ");
+
+    console.log(array);
+
+    const output = array.map((string) => {
+      console.log(ucfirst(string))
+      return ucfirst(string);
+    });
+
+    return output.join(" ");
+}
+
 export function cleanMarkdown(text: string): string {
   return text
     .split('\n')

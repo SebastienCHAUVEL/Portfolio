@@ -1,6 +1,6 @@
 import {  useRef } from "react";
 import ReactMarkdown from 'react-markdown';
-import { cleanMarkdown, scrollToElement, ucfirst } from "../../utils/utils";
+import { cleanMarkdown, scrollToElement, ucfirstAll } from "../../utils/utils";
 import { type IProject } from "../../data/projects";
 
 export function Project({ project, isExtend, extendAnimationDelay, handleExtendDelaye }: { project: IProject, isExtend: boolean, extendAnimationDelay: number, handleExtendDelaye: () => boolean }) {
@@ -35,7 +35,7 @@ export function Project({ project, isExtend, extendAnimationDelay, handleExtendD
             <a href={project.demo} target="_blank">Accèder à la démo</a>
             <a href={project.github} target="_blank">Github</a>
           </div>
-          <h3>{ucfirst(project.title)}</h3>
+          <h3>{ucfirstAll(project.title)}</h3>
           <div className="description">
             <h4>Description</h4>
             <ReactMarkdown>{cleanMarkdown(project.description)}</ReactMarkdown>

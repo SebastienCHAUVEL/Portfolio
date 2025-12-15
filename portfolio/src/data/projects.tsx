@@ -115,7 +115,7 @@ export const projects: IProject[] = [
   {
     id: 4,
     image: 'trip_odvisor_demo',
-    title: 'trip odvisor',
+    title: `trip o'dvisor`,
     description: `**Trip O'dvisor** est une plateforme de conseils touristiques interactive permettant de découvrir des destinations, consulter des avis et s’inscrire à une newsletter pour recevoir des bons plans. Le projet a été réalisé en **JavaScript pur**, sans dépendance externe, en mettant l’accent sur la gestion des événements, la logique front-end et l’expérience utilisateur.
 
       ##### Objectifs
