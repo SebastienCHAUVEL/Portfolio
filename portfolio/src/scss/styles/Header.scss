@@ -1,0 +1,42 @@
+@use '../vars';
+@use '../mixins';
+
+header {
+  position: absolute;
+  top: calc(vars.$padding-main * 2);
+  width: 100%;
+}
+
+.header__sup {
+  background-color: var(--primary-color);
+  height: calc(vars.$padding-main * 4);
+  display: flex;
+  align-items: center;
+  padding: 0px vars.$padding-main;
+  a {
+    display: flex;
+  }
+  img {
+    height: calc(vars.$padding-main * 3);
+    width: auto;
+  }
+}
+
+.header__sub {
+  position: relative;
+  width: 100%;
+  height: vars.$padding-main;
+  .left, .right {
+    display: block;
+    position: absolute;
+    @include mixins.triangle(vars.$padding-main, var(--primary-color-dark));
+    top: 0;
+  }
+  .left {
+    left: 0;
+  }
+  .right {
+    right: 0;
+    transform: rotate(-90deg);
+  }
+}

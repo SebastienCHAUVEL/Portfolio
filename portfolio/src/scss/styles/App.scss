@@ -1,0 +1,26 @@
+@use '../themes' as *;
+@use '../vars';
+
+html {
+  @include theme-light;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: "M PLUS 2", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+// Detect dark-mode in user setting 
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light) {
+    @include theme-dark;
+  }
+}
+
+html.theme-dark {
+  @include theme-dark;
+}
+
+html.theme-light {
+  @include theme-light;
+}

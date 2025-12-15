@@ -1,0 +1,19 @@
+@use 'sass:string';
+
+@mixin triangle($size, $color) {
+  width: 0;
+  height: 0px;
+  border-bottom: $size solid transparent;
+  border-right: $size solid $color;
+}
+@mixin link_icon($size, $color) {
+  display: inline-block;
+  margin-right: calc($size / 2);
+  width: $size;
+  height: $size;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  $encoded-color: string.slice(#{$color}, 2);
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23#{$encoded-color}' stroke-linecap='round' stroke-width='2'%3E%3Cpath d='m12 17l-1.5 1.5a3.536 3.536 0 0 1-5 0v0a3.536 3.536 0 0 1 0-5l3-3a3.536 3.536 0 0 1 5 0v0'/%3E%3Cpath d='m12 7l1.5-1.5a3.536 3.536 0 0 1 5 0v0a3.536 3.536 0 0 1 0 5l-3 3a3.536 3.536 0 0 1-5 0v0'/%3E%3C/g%3E%3C/svg%3E");
+}

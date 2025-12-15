@@ -1,0 +1,23 @@
+html {
+  --primary-color: #234C6A;
+  --primary-color-dark: #1B3C53;
+  --secondary-color: #456882;
+  --contrast-color: #D2C1B6;
+  --contrast-color-light: rgba(210, 193, 182, 0.4); ;
+}
+
+@mixin theme-light {
+
+  --color-bg: white;
+  --color-bg-main: white;
+  --color-text: #1B3C53;
+  --color-text-light: #456882;
+}
+
+@mixin theme-dark {
+
+  --color-bg: #1B3C53;
+  --color-bg-main: #234C6A;
+  --color-text: #D2C1B6;
+  --color-text-light: #D2C1B6;
+}
