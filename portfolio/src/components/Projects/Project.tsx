@@ -28,7 +28,7 @@ export function Project({ project, isExtend, extendAnimationDelay, handleExtendD
   return (
     <article key={project.id} ref={articleRefs} className={isExtend ? 'project extend' : 'project'}>
       <button type='button' onClick={onExtend}>
-        <img src={`/portfolio/src/assets/${project.image}.png`} alt={`${project.title} preview`} /></button>
+        <img src={`/${project.image}.png`} alt={`${project.title} preview`} /></button>
       <div className="project__extend-part">
         <div>
           <div className='project__links'>
