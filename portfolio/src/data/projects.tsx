@@ -79,8 +79,8 @@ export const projects: IProject[] = [
   },
   {
     id: 3,
-    image: 'hero_league_demo',
-    title: 'hero league',
+    image: 'heros_league_demo',
+    title: 'heros league',
     description: `**Heros League** est un site web statique **responsive** conçu pour une agence fictive de super-héros. Le projet met l’accent sur l’intégration fidèle de maquettes et sur la maîtrise avancée de **HTML5** et **CSS3** afin de proposer une expérience utilisateur fluide, interactive et visuellement impactante.
 
       ##### Objectifs
@@ -116,7 +116,7 @@ export const projects: IProject[] = [
     id: 4,
     image: 'trip_odvisor_demo',
     title: `trip o'dvisor`,
-    description: `**Trip O'dvisor** est une plateforme de conseils touristiques interactive permettant de découvrir des destinations, consulter des avis et s’inscrire à une newsletter pour recevoir des bons plans. Le projet a été réalisé en **JavaScript pur**, sans dépendance externe, en mettant l’accent sur la gestion des événements, la logique front-end et l’expérience utilisateur.
+    description: `**Trip O'dvisor** est une plateforme de conseils touristiques fictive permettant de découvrir des destinations, consulter des avis et s’inscrire à une newsletter. Le projet a été réalisé en **JavaScript pur**, sans dépendance externe, en mettant l’accent sur la gestion des événements, la logique front-end et l’expérience utilisateur.
 
       ##### Objectifs
 
@@ -126,7 +126,7 @@ export const projects: IProject[] = [
       - Mettre en place des comportements conditionnels basés sur l’interaction et le scroll
       - Structurer un projet front-end sans framework
 
-      ##### Fonctionnalités principales
+      ##### Fonctionnalités implémentés
 
       - Newsletter interactive avec affichage conditionnel (clic et scroll)
       - Validation des emails avec détection des domaines jetables
@@ -140,7 +140,6 @@ export const projects: IProject[] = [
       - **Langages :** HTML5, CSS3, JavaScript (ES6+)  
       - **Front-end :** Manipulation du DOM, gestion des événements  
       - **UI / UX :** Thèmes dynamiques, animations CSS  
-      - **Outils :** Git, GitHub  
 
       Ce projet met en avant ma maîtrise du JavaScript vanilla pour créer des interfaces interactives, dynamiques et performantes, tout en respectant un cahier des charges précis et orienté utilisateur.`,
     demo: 'https://o-clock-dublin.github.io/SA05E04-challenge-tripodvisor-SebastienCHAUVEL/',

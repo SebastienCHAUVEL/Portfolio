@@ -1,10 +1,19 @@
 @use '../vars';
 
 main {
-  margin: vars.$padding-main;
-  padding: vars.$padding-main;
-  padding-top: calc((vars.$padding-main * 5) + vars.$padding-main);
   background-color: var(--color-bg-main);
-  box-shadow: 1rem 1rem 1rem 5px rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
+}
+
+@media #{vars.$small-screen} {
+}
+
+@media #{vars.$medium-screen} { 
+  main {
+    margin: vars.$padding-main;
+    box-shadow: 1rem 1rem 1rem 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    margin: vars.$padding-main;
+    padding: vars.$padding-main;
+    padding-top: calc((vars.$padding-main * 5) + vars.$padding-main);
+  }
 }

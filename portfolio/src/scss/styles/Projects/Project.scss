@@ -44,10 +44,6 @@ article.project {
       display: flex;
       justify-content: space-between;
 
-      a {
-        margin: 0.5rem;
-      }
-
       a::before {
         content: '';
         @include mixins.link_icon(1rem, vars.$primary-color)
@@ -64,6 +60,7 @@ article.project {
       line-height: 2rem;
       display: flex;
       justify-content: center;
+      text-align: center;
 
       &::before, &::after {
         display: flex;
