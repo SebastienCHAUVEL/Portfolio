@@ -9,7 +9,7 @@ html {
 @mixin theme-light {
 
   --color-bg: white;
-  --color-bg-main: white;
+  --color-bg-light: white;
   --color-text: #1B3C53;
   --color-text-light: #456882;
 }
@@ -17,7 +17,7 @@ html {
 @mixin theme-dark {
 
   --color-bg: #1B3C53;
-  --color-bg-main: #234C6A;
+  --color-bg-light: #234C6A;
   --color-text: #D2C1B6;
   --color-text-light: #D2C1B6;
 }

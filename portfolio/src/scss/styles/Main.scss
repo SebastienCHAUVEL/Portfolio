@@ -1,11 +1,5 @@
 @use '../vars';
 
-main {
-  background-color: var(--color-bg-main);
-}
-
-@media #{vars.$small-screen} {
-}
 
 @media #{vars.$medium-screen} { 
   main {
@@ -14,6 +8,10 @@ main {
     border-radius: 0.5rem;
     margin: vars.$padding-main;
     padding: vars.$padding-main;
-    padding-top: calc((vars.$padding-main * 5) + vars.$padding-main);
+    padding-top: calc(vars.$padding-main * 6);
+
+    .theme-dark & {
+      padding-top: vars.$padding-main;
+    } 
   }
 }

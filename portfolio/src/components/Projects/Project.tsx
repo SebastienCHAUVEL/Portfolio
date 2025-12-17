@@ -23,8 +23,6 @@ export function Project({ project, isExtend, extendAnimationDelay, handleExtendD
     }
   }
 
-
-
   return (
     <article key={project.id} ref={articleRefs} className={isExtend ? 'project extend' : 'project'}>
       <button type='button' onClick={onExtend}>

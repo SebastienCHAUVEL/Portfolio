@@ -46,7 +46,10 @@ article.project {
 
       a::before {
         content: '';
-        @include mixins.link_icon(1rem, vars.$primary-color)
+        @include mixins.link_icon(1rem, vars.$primary-color);
+        .theme-dark & {
+          @include mixins.link_icon(1rem, vars.$contrast-color);
+        }
       }
 
       a:hover {
