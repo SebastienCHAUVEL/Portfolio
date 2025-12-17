@@ -27,7 +27,6 @@ export function Project({
   async function onExtend () {
     const isDelayed =  handleExtendDelaye();
     const offsetScrollY =  isLargeMode ? HEADER_HEIGHT : 0;
-    console.log(articleRefs.current);
 
     if (!isExtend) {
       if(isDelayed) {
