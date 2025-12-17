@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import { projects } from "../../data/projects";
 import { Project } from "./Project";
 
-export function Projects() {
+export function Projects({ 
+  HEADER_HEIGHT, 
+  isLargeMode, 
+  setIsScrolling 
+} : { 
+  HEADER_HEIGHT: 
+  number, 
+  isLargeMode: boolean ,
+  setIsScrolling: Dispatch<SetStateAction<boolean>>
+}) {
 
   const [isExtend, setIsExtend] = useState(projects.map(() => false));
   const extendAnimationDelay = 700;
@@ -10,7 +19,7 @@ export function Projects() {
   function handleExtendDelaye(index: number) {
     let isExtendCopy = isExtend.map((_, i) => i === index);
 
-    // If project is already extended we just close it
+    // If current project is already extended we just close it
     if (isExtend[index]) {
       isExtendCopy = isExtend.map(() => false);
       setIsExtend(isExtendCopy);
@@ -46,6 +55,9 @@ export function Projects() {
             isExtend={isExtend[i]}
             extendAnimationDelay={extendAnimationDelay}
             handleExtendDelaye={() => handleExtendDelaye(i)}
+            HEADER_HEIGHT={HEADER_HEIGHT}
+            isLargeMode={isLargeMode}
+            setIsScrolling={setIsScrolling}
           /> 
         )}
       </div>

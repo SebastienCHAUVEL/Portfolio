@@ -1,8 +1,8 @@
 import Logo from '../assets/portfolio.png'
 
-export function Header() {
+export function Header({ isStartScrolled } : { isStartScrolled: boolean }) {
   return (
-      <header>
+      <header className={ isStartScrolled ? 'header--scrolled' : ''}>
         <div className='header__sup'>
           <a href="#">
             <img src={Logo} alt="Logo" className='logo'/>

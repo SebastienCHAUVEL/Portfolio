@@ -11,7 +11,7 @@
     padding-top: calc(vars.$padding-main * 6);
 
     .theme-dark & {
-      padding-top: vars.$padding-main;
+      margin-top: 0;
     } 
   }
 }

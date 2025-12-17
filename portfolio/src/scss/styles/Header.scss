@@ -1,7 +1,6 @@
 @use '../vars';
 @use '../mixins';
 
-
 .header__sup {
   background-color: var(--primary-color);
   height: calc(vars.$padding-main * 2);
@@ -29,21 +28,33 @@
 }
 
 @media #{vars.$medium-screen} { 
-  html:not(.theme-dark) header {
+  header {
     position: absolute;
-    top: calc(vars.$padding-main * 2);
     width: 100%;
+  }
+  html:not(.theme-dark) header {    
+    top: calc(vars.$padding-main * 2);
   }
 
   .header__sup {
     height: calc(vars.$padding-main * 4);
     padding: 0px vars.$padding-main;
-    // position: fixed;
-    // top: 0;
     width: 100%;
 
     img {
       height: calc(vars.$padding-main * 3);
+    }
+
+
+    header.header--scrolled &{
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      height: calc(vars.$padding-main * 3);
+
+      img {
+        height: calc(vars.$padding-main * 2);
+      }
     }
   }
 
@@ -52,6 +63,11 @@
     top: calc(vars.$padding-main * 4);
     width: 100%;
     height: vars.$padding-main;
+
+    header.header--scrolled &, 
+    .theme-dark & {
+      opacity: 0;
+    }
 
     .left, .right {
       display: block;

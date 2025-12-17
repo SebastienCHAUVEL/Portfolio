@@ -1,25 +1,52 @@
-import {  useRef } from "react";
+import {  useRef, type Dispatch, type SetStateAction } from "react";
 import ReactMarkdown from 'react-markdown';
-import { cleanMarkdown, scrollToElement, ucfirstAll } from "../../utils/utils";
+import { cleanMarkdown, smoothScrollToElement, ucfirstAll } from "../../utils/utils";
 import { type IProject } from "../../data/projects";
 
-export function Project({ project, isExtend, extendAnimationDelay, handleExtendDelaye }: { project: IProject, isExtend: boolean, extendAnimationDelay: number, handleExtendDelaye: () => boolean }) {
+export function Project({ 
+  project, 
+  isExtend, 
+  extendAnimationDelay, 
+  handleExtendDelaye, 
+  HEADER_HEIGHT, 
+  isLargeMode,
+  setIsScrolling 
+}: { 
+  project: IProject, 
+  isExtend: boolean, 
+  extendAnimationDelay: number, 
+  handleExtendDelaye: () => boolean, 
+  HEADER_HEIGHT: number, 
+  isLargeMode: boolean;
+  setIsScrolling: Dispatch<SetStateAction<boolean>>  
+  }) {
 
   const articleRefs = useRef<(HTMLElement | null)>(null);
 
 
   async function onExtend () {
     const isDelayed =  handleExtendDelaye();
+    const offsetScrollY =  isLargeMode ? HEADER_HEIGHT : 0;
+    console.log(articleRefs.current);
 
     if (!isExtend) {
       if(isDelayed) {
         setTimeout(() => {
-          scrollToElement(articleRefs.current);
+          smoothScrollToElement(
+            articleRefs.current, 
+            offsetScrollY,
+            () => setIsScrolling(true),   
+            () => setIsScrolling(false)   
+          );
         }, extendAnimationDelay);
         return
       }
-
-      scrollToElement(articleRefs.current);
+      smoothScrollToElement(
+        articleRefs.current, 
+        offsetScrollY,
+        () => setIsScrolling(true),   
+        () => setIsScrolling(false)   
+      );
     }
   }
 

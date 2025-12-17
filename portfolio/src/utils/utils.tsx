@@ -23,11 +23,43 @@ export function smoothScrollTo(targetY: number, duration = 1000) {
   requestAnimationFrame(animation);
 }
 
-export function scrollToElement(element: HTMLElement | null) {
-  if (element) {
-    const top = element.getBoundingClientRect().top + window.scrollY;
-    smoothScrollTo(top, 700);
+export function smoothScrollToElement(
+  element: HTMLElement | null, 
+  offsetY: number,
+  onScrollStart?: () => void,
+  onScrollEnd?: () => void
+) {
+  if (!element) return;
+  
+  const startY = window.scrollY;
+  const startTime = performance.now();
+  const duration = 700;
+  
+  onScrollStart?.(); // ← Signaler le début
+  
+  function animation(currentTime: number) {
+    if (!element) return;
+
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    const targetY = element.getBoundingClientRect().top + window.scrollY - offsetY;
+    
+    const ease =
+      progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+    
+    window.scrollTo(0, startY + (targetY - startY) * ease);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animation);
+    } else {
+      onScrollEnd?.(); // ← Signaler la fin
+    }
   }
+  
+  requestAnimationFrame(animation);
 }
 
 export function ucfirst(string: string) {
@@ -48,10 +80,7 @@ export function ucfirst(string: string) {
 export function ucfirstAll(string: string) {
     const array = string.split(" ");
 
-    console.log(array);
-
     const output = array.map((string) => {
-      console.log(ucfirst(string))
       return ucfirst(string);
     });
 
