@@ -9,14 +9,17 @@ function App() {
   
   const [isStartScrolled, setIsStartScrolled] = useState(false);
   const [windowWidth, setwindowWidth] = useState(window.innerWidth);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   
   const isLargeMode = windowWidth > MEDIUM_SCREEN_WIDTH;
   
   function handleScroll() {
-    if (isScrolling) return;
+    // If an autoscroll is triggered, ignore the function
+    if (isAutoScrolling) return;
     
     const { scrollY } = window;
+
+    // When the scroll is below the header, we notice the header for change CSS to fixed header
     if (scrollY > GAP_TOP_HEADER) {
       setIsStartScrolled(true);
     } else {
@@ -49,7 +52,7 @@ function App() {
         <Projects 
           HEADER_HEIGHT={HEADER_HEIGHT}
           isLargeMode={isLargeMode}
-          setIsScrolling={setIsScrolling}
+          setIsAutoScrolling={setIsAutoScrolling}
         />
       </main>
     </>

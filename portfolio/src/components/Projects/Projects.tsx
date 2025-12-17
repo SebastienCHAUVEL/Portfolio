@@ -5,18 +5,19 @@ import { Project } from "./Project";
 export function Projects({ 
   HEADER_HEIGHT, 
   isLargeMode, 
-  setIsScrolling 
+  setIsAutoScrolling 
 } : { 
   HEADER_HEIGHT: 
   number, 
   isLargeMode: boolean ,
-  setIsScrolling: Dispatch<SetStateAction<boolean>>
+  setIsAutoScrolling: Dispatch<SetStateAction<boolean>>
 }) {
 
   const [isExtend, setIsExtend] = useState(projects.map(() => false));
-  const extendAnimationDelay = 700;
+  const EXTEND_ANIMATION_DELAY = 700;
 
-  function handleExtendDelaye(index: number) {
+  // Toggle isExtend to extend a project on click and return true if another project is already extend
+  function handleExtendDelay(index: number) {
     let isExtendCopy = isExtend.map((_, i) => i === index);
 
     // If current project is already extended we just close it
@@ -39,7 +40,7 @@ export function Projects({
     // Then we open the project selected with delay for CSS animation
     setTimeout(() => {
       setIsExtend(isExtendCopy);
-    }, extendAnimationDelay); 
+    }, EXTEND_ANIMATION_DELAY); 
 
     return true;
   }
@@ -53,11 +54,11 @@ export function Projects({
             key={project.id}
             project={project}
             isExtend={isExtend[i]}
-            extendAnimationDelay={extendAnimationDelay}
-            handleExtendDelaye={() => handleExtendDelaye(i)}
+            EXTEND_ANIMATION_DELAY={EXTEND_ANIMATION_DELAY}
+            handleExtendDelay={() => handleExtendDelay(i)}
             HEADER_HEIGHT={HEADER_HEIGHT}
             isLargeMode={isLargeMode}
-            setIsScrolling={setIsScrolling}
+            setIsAutoScrolling={setIsAutoScrolling}
           /> 
         )}
       </div>

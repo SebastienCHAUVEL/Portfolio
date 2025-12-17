@@ -35,7 +35,7 @@ export function smoothScrollToElement(
   const startTime = performance.now();
   const duration = 700;
   
-  onScrollStart?.(); // ← Signaler le début
+  onScrollStart?.(); 
   
   function animation(currentTime: number) {
     if (!element) return;
@@ -55,7 +55,7 @@ export function smoothScrollToElement(
     if (progress < 1) {
       requestAnimationFrame(animation);
     } else {
-      onScrollEnd?.(); // ← Signaler la fin
+      onScrollEnd?.(); 
     }
   }
   
