@@ -119,7 +119,7 @@ header nav {
     nav {
       display: flex;
       justify-content: space-around;
-      padding-right: calc(vars.$padding-medium * 1.5);
+      padding-right: calc(vars.$padding-medium * 2);
       gap: calc(vars.$padding-medium * 1.5);
       align-items: center;
       height: 100%;

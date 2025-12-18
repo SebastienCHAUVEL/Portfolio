@@ -520,7 +520,7 @@ header nav a {
   .header__sup nav {
     display: flex;
     justify-content: space-around;
-    padding-right: 1.5rem;
+    padding-right: 2rem;
     gap: 1.5rem;
     align-items: center;
     height: 100%;
