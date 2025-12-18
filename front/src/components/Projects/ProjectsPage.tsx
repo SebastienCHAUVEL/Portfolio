@@ -2,14 +2,14 @@ import { useState, type Dispatch, type SetStateAction } from "react";
 import { projects } from "../../data/projects";
 import { Project } from "./Project";
 
-export function Projects({ 
+export function ProjectsPage({ 
   HEADER_HEIGHT, 
-  isLargeMode, 
+  isMediumScreen, 
   setIsAutoScrolling 
 } : { 
   HEADER_HEIGHT: 
   number, 
-  isLargeMode: boolean ,
+  isMediumScreen: boolean ,
   setIsAutoScrolling: Dispatch<SetStateAction<boolean>>
 }) {
 
@@ -57,7 +57,7 @@ export function Projects({
             EXTEND_ANIMATION_DELAY={EXTEND_ANIMATION_DELAY}
             handleExtendDelay={() => handleExtendDelay(i)}
             HEADER_HEIGHT={HEADER_HEIGHT}
-            isLargeMode={isLargeMode}
+            isMediumScreen={isMediumScreen}
             setIsAutoScrolling={setIsAutoScrolling}
           /> 
         )}

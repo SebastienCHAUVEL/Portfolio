@@ -1,18 +1,85 @@
 @use '../vars';
 @use '../mixins';
 
+header {
+  position: relative;
+}
+
 .header__sup {
   background-color: var(--primary-color);
   height: calc(vars.$padding-main * 2);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0px calc(vars.$padding-main / 4);
+
   a {
     display: flex;
+  
+    img {
+      height: calc(vars.$padding-main * 1.5);
+      width: auto;
+    }
   }
-  img {
-    height: calc(vars.$padding-main * 1.5);
-    width: auto;
+
+  .burger-btn {
+    @include mixins.burger-menu(3rem, vars.$contrast-color);
+    
+    &:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 4px vars.$contrast-color);
+    }
+  }
+}
+header nav {
+  a{
+    &.current::before {
+      content: "";
+      @include mixins.brace(3rem, vars.$contrast-color, left);
+    }
+    
+    &.current::after {
+      content: "";
+      @include mixins.brace(3rem, vars.$contrast-color, right);
+    }
+  }
+  &.open-burger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: color-mix(in srgb, var(--primary-color-dark) 90%, transparent);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    z-index: 100;
+    padding: 1rem;
+    gap: 1rem;
+
+    a {
+      font-weight: 500;
+    }
+
+    a:not(:nth-last-of-type(1)) {
+      border-bottom: 2px solid var(--contrast-color-light);
+    }
+
+    a:hover {
+      font-weight: 700;
+    } 
+  }
+
+  a {
+    font-size: 1.5rem;
+    color: var(--contrast-color) !important;
+    font-weight: 600;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }
 
@@ -21,9 +88,17 @@
     height: calc(vars.$padding-main * 3);
     padding: 0px calc(vars.$padding-main / 2);
 
-    img {
-      height: calc(vars.$padding-main * 2);
+    a {
+      img {
+        height: calc(vars.$padding-main * 2);
+      }
     }
+    .burger-btn {
+      margin-right: 1rem;
+    }
+  }
+  header nav.open-burger {
+    width: 100%;
   }
 }
 
@@ -41,19 +116,40 @@
     padding: 0px vars.$padding-main;
     width: 100%;
 
-    img {
-      height: calc(vars.$padding-main * 3);
-    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      padding-right: calc(vars.$padding-medium * 1.5);
+      gap: calc(vars.$padding-medium * 1.5);
+      align-items: center;
+      height: 100%;
+      
+      a {
+        font-size: 1.1rem;
+        white-space: nowrap;
 
-
-    header.header--scrolled &{
-      position: fixed;
-      top: 0;
-      z-index: 100;
-      height: calc(vars.$padding-main * 3);
-
-      img {
-        height: calc(vars.$padding-main * 2);
+        &.current .text-link, 
+        &:hover .text-link {
+          height: 4rem;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid var(--contrast-color);
+          position: relative;
+          
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--contrast-color);
+            box-shadow: 
+              0 -2px 6px var(--contrast-color),
+              0 -4px 12px color-mix(in srgb, var(--contrast-color) 40%, transparent);
+            filter: blur(2px);
+          }
+        }
       }
     }
   }
@@ -63,11 +159,6 @@
     top: calc(vars.$padding-main * 4);
     width: 100%;
     height: vars.$padding-main;
-
-    header.header--scrolled &, 
-    .theme-dark & {
-      opacity: 0;
-    }
 
     .left, .right {
       display: block;
@@ -81,6 +172,36 @@
     .right {
       right: 0;
       transform: rotate(-90deg);
+    }
+  }
+}
+
+@media #{vars.$large-screen} {
+  .header__sup {
+    gap: 2rem;
+
+    header.header--scrolled &{
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      height: calc(vars.$padding-main * 3);
+
+      a img {
+        height: calc(vars.$padding-main * 2);
+      }
+    }
+
+    a {
+      img {
+        height: calc(vars.$padding-main * 3);
+      }
+    }
+  }
+
+  .header__sub {
+    header.header--scrolled &, 
+    .theme-dark & {
+      opacity: 0;
     }
   }
 }

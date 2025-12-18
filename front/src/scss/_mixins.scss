@@ -13,7 +13,40 @@
   height: $size;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+
   $encoded-color: string.slice(#{$color}, 2);
 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23#{$encoded-color}' stroke-linecap='round' stroke-width='2'%3E%3Cpath d='m12 17l-1.5 1.5a3.536 3.536 0 0 1-5 0v0a3.536 3.536 0 0 1 0-5l3-3a3.536 3.536 0 0 1 5 0v0'/%3E%3Cpath d='m12 7l1.5-1.5a3.536 3.536 0 0 1 5 0v0a3.536 3.536 0 0 1 0 5l-3 3a3.536 3.536 0 0 1-5 0v0'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@mixin brace($height, $color, $direction) {
+  display: inline-block;
+  width: calc($height / 2);
+  height: $height;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  $encoded-color: string.slice(#{$color}, 2);
+
+  @if $direction == left {  
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 70 30 Q 35 30, 35 45 L 35 82 Q 35 95, 15 100 Q 35 105, 35 118 L 35 155 Q 35 170, 70 170' fill='none' stroke='%23#{$encoded-color}' stroke-width='16' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  } @else if $direction == right {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 30 30 Q 65 30, 65 45 L 65 82 Q 65 95, 85 100 Q 65 105, 65 118 L 65 155 Q 65 170, 30 170' fill='none' stroke='%23#{$encoded-color}' stroke-width='16' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  
+}
+
+@mixin burger-menu($size, $color) {
+  width: $size;
+  height: $size;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  
+  $encoded-color: string.slice(#{$color}, 2);
+  
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='15' y1='25' x2='85' y2='25' stroke='%23#{$encoded-color}' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='15' y1='50' x2='85' y2='50' stroke='%23#{$encoded-color}' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='15' y1='75' x2='85' y2='75' stroke='%23#{$encoded-color}' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E");
 }

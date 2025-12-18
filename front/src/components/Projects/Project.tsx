@@ -9,7 +9,7 @@ export function Project({
   EXTEND_ANIMATION_DELAY, 
   handleExtendDelay, 
   HEADER_HEIGHT, 
-  isLargeMode,
+  isMediumScreen,
   setIsAutoScrolling 
 }: { 
   project: IProject, 
@@ -17,7 +17,7 @@ export function Project({
   EXTEND_ANIMATION_DELAY: number, 
   handleExtendDelay: () => boolean, 
   HEADER_HEIGHT: number, 
-  isLargeMode: boolean;
+  isMediumScreen: boolean,
   setIsAutoScrolling: Dispatch<SetStateAction<boolean>>  
   }) {
 
@@ -26,7 +26,7 @@ export function Project({
 
   async function onExtend () {
     const isDelayed =  handleExtendDelay(); // Toggle isExtend 
-    const offsetScrollY =  isLargeMode ? HEADER_HEIGHT : 0; // If large mode is enable, header is fixed => define an offset by the size of the header 
+    const offsetScrollY =  isMediumScreen ? HEADER_HEIGHT : 0; // If large mode is enable, header is fixed => define an offset by the size of the header 
 
     // Scroll into selected project if we open it
     if (!isExtend) {

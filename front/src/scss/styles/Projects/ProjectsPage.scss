@@ -1,0 +1,12 @@
+@use '../../vars';
+@use '../../mixins';
+@use '../../themes';
+
+section.projects {
+  .projects__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr));
+    gap: vars.$padding-main;
+    padding: vars.$padding-medium;
+  }
+}

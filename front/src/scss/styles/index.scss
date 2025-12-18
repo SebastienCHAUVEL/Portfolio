@@ -5,7 +5,7 @@ html {
   @include theme-light;
   color: var(--color-text);
   background-color: var(--color-bg);
-  font-family: "M PLUS 2", sans-serif;
+  font-family: "Google Sans Code", monospace, sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -23,4 +23,22 @@ html.theme-dark {
 
 html.theme-light {
   @include theme-light;
+}
+
+section h2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--color-text-light);
+
+  &::before, &::after {
+    display: flex;
+    align-self: center;
+    content: "";
+    height: 0;
+    width: 2rem;
+    border-top: 2px solid var(--color-text-light);
+    margin: 1rem;
+  }
 }

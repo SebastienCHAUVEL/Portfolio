@@ -5,13 +5,15 @@
 
 article.project {
   padding: vars.$padding-medium;
+  height: fit-content;
+  max-width: 600px;
+  margin: 0 auto;
   box-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   transition: 
     transform .4s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow .4s cubic-bezier(0.4, 0, 0.2, 1),
     background-color .4s ease;
-  height: fit-content;
   
   &:hover:not(.extend) {
     transform: translateY(-4px);  
@@ -26,7 +28,8 @@ article.project {
   }
   
   .project__extend-part {
-    color: var(--color-text-light);
+    color: var(--color-text);
+    font-weight: 300;
     padding: vars.$padding-medium;
     gap: vars.$padding-medium;
     display: grid;  

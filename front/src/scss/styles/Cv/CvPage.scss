@@ -1,0 +1,21 @@
+@use '../../vars';
+
+section.cv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+  }
+}
+@media #{vars.$small-screen} {
+  section.cv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

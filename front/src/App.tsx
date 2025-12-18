@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
-import { Projects } from './components/Projects/Projects';
+import { ProjectsPage } from './components/Projects/ProjectsPage';
+import { Route, Routes } from 'react-router';
+import CvPage from './components/Cv/CvPage';
 
 function App() {
   const GAP_TOP_HEADER = 6 * 16;
@@ -11,7 +13,7 @@ function App() {
   const [windowWidth, setwindowWidth] = useState(window.innerWidth);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   
-  const isLargeMode = windowWidth > MEDIUM_SCREEN_WIDTH;
+  const isMediumScreen = windowWidth > MEDIUM_SCREEN_WIDTH;
   
   function handleScroll() {
     // If an autoscroll is triggered, ignore the function
@@ -33,27 +35,32 @@ function App() {
   
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () =>  window.removeEventListener("resize", handleResize);
   }, []);
   
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () =>  window.removeEventListener('scroll', handleScroll);;
   }, []); 
   
   return (
     <>
       <Header 
         isStartScrolled={isStartScrolled}
+        isMediumScreen={isMediumScreen}
       />
       <main>
-        <Projects 
-          HEADER_HEIGHT={HEADER_HEIGHT}
-          isLargeMode={isLargeMode}
-          setIsAutoScrolling={setIsAutoScrolling}
-        />
+        <Routes>
+          <Route path="/" element={
+            <ProjectsPage 
+              HEADER_HEIGHT={HEADER_HEIGHT}
+              isMediumScreen={isMediumScreen}
+              setIsAutoScrolling={setIsAutoScrolling}
+            />}/>
+          <Route path="/cv" element={
+            <CvPage 
+          />}/>
+        </Routes>
       </main>
     </>
   )
