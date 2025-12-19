@@ -769,6 +769,9 @@ footer nav {
 footer nav a {
   align-items: center;
 }
+footer .copyright {
+  text-align: center;
+}
 footer #mailto:before {
   content: "";
   display: inline-block;

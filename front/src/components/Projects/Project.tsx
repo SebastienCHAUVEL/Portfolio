@@ -58,8 +58,8 @@ export function Project({
       <div className="project__extend-part">
         <div>
           <div className='project__links'>
-            <a href={project.demo} target="_blank">Accèder à la démo</a>
-            <a href={project.github} target="_blank">Github</a>
+            <a href={project.demo} target="_blank" rel="noopener noreferrer">Accèder à la démo</a>
+            <a href={project.github} target="_blank" rel="noopener noreferrer">Github</a>
           </div>
           <h3>{ucfirstAll(project.title)}</h3>
           <div className="description">
