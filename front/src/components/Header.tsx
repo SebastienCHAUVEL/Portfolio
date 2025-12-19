@@ -1,8 +1,10 @@
 import { Link } from 'react-router'
-import Logo from '../assets/portfolio.png'
 import { useState } from 'react'
+import type { MouseEvent } from 'react';
+
 import Menu from './Menu';
 import { smoothScrollTo } from '../utils/utils';
+import Logo from '../assets/portfolio.png'
 
 export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: boolean, isMediumScreen: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,10 +22,9 @@ export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: 
     }
   }
 
-  function handleLogoClick() {
-    smoothScrollTo(
-      0
-    );
+  function handleLogoClick(e: MouseEvent<HTMLElement>) {
+    e.preventDefault();
+    smoothScrollTo(0, 700);
   }
 
   return (

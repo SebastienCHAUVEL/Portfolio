@@ -1,11 +1,11 @@
 import { NavLink } from "react-router";
+import type { MouseEvent } from 'react';
 import { smoothScrollTo } from "../utils/utils";
 
 export default function Menu({ className, onMenuOpen } : { className: string, onMenuOpen: () => void }) {
-  function handleMenuClick() {
-    smoothScrollTo(
-      0
-    );
+  function handleMenuClick(e: MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+    smoothScrollTo(0, 700);
     onMenuOpen();
   }
 
