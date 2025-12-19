@@ -1,7 +1,14 @@
-export function smoothScrollTo(targetY: number, duration = 1000) {
+export function smoothScrollTo(
+  targetY: number,
+  duration = 700,
+  onScrollStart?: () => void,
+  onScrollEnd?: () => void
+) {
   const startY = window.scrollY;
   const distance = targetY - startY;
   const startTime = performance.now();
+
+  onScrollStart?.(); 
 
   function animation(currentTime: number) {
     const elapsed = currentTime - startTime;
@@ -17,6 +24,8 @@ export function smoothScrollTo(targetY: number, duration = 1000) {
 
     if (progress < 1) {
       requestAnimationFrame(animation);
+    } else {
+      onScrollEnd?.(); 
     }
   }
 

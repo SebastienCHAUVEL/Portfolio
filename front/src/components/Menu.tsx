@@ -1,18 +1,26 @@
 import { NavLink } from "react-router";
+import { smoothScrollTo } from "../utils/utils";
 
 export default function Menu({ className, onMenuOpen } : { className: string, onMenuOpen: () => void }) {
+  function handleMenuClick() {
+    onMenuOpen();
+    smoothScrollTo(
+      0
+    );
+  }
+
   return (
     <nav className={className}>
       <NavLink 
       className={({ isActive }) => (isActive ? "navlink current" : "navlink")}
       to="/"
-      onClick={onMenuOpen}>
+      onClick={handleMenuClick}>
         <span className="text-link">Projets</span>
       </NavLink>
       <NavLink 
       className={({ isActive }) => (isActive ? "navlink current" : "navlink")}
       to="/cv"
-      onClick={onMenuOpen}>
+      onClick={handleMenuClick}>
         <span className="text-link">CV</span>
       </NavLink>
       {/* <NavLink 

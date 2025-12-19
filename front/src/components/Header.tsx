@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import Logo from '../assets/portfolio.png'
 import { useState } from 'react'
 import Menu from './Menu';
+import { smoothScrollTo } from '../utils/utils';
 
 export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: boolean, isMediumScreen: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,11 +20,17 @@ export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: 
     }
   }
 
+  function handleLogoClick() {
+    smoothScrollTo(
+      0
+    );
+  }
+
   return (
       <header className={ isStartScrolled ? 'header--scrolled' : ''}>
         <div className='header__sup'>
           <Link to="/">
-            <img src={Logo} alt="Logo" className='logo'/>
+            <img src={Logo} alt="Logo" className='logo' onClick={handleLogoClick}/>
           </Link>
           {isMediumScreen ? (
             <Menu className="" onMenuOpen={() => {}}/>
