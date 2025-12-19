@@ -3,10 +3,10 @@ import { smoothScrollTo } from "../utils/utils";
 
 export default function Menu({ className, onMenuOpen } : { className: string, onMenuOpen: () => void }) {
   function handleMenuClick() {
-    onMenuOpen();
     smoothScrollTo(
       0
     );
+    onMenuOpen();
   }
 
   return (
