@@ -1,6 +1,6 @@
 @use '../vars';
 
-
+/* Medium to Large screen */
 @media #{vars.$medium-screen} { 
   main {
     margin: vars.$padding-main;
@@ -8,10 +8,15 @@
     border-radius: 0.5rem;
     margin: vars.$padding-main;
     padding: vars.$padding-main;
-    padding-top: calc(vars.$padding-main * 6);
-
-    .theme-dark & {
-      margin-top: 0;
-    } 
+    padding-top: calc(vars.$padding-main * 6); 
   }
+  /*Dark theme*/
+  @media (prefers-color-scheme: dark) {
+    html:not(.theme-light) main {
+      padding-top: calc(vars.$padding-main * 3);
+    }
+  }
+  .theme-dark main {
+    padding-top: calc(vars.$padding-main * 3);
+  } 
 }

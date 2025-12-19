@@ -54,9 +54,6 @@ article.project {
       a::before {
         content: '';
         @include mixins.link_icon(1rem, vars.$primary-color);
-        .theme-dark & {
-          @include mixins.link_icon(1rem, vars.$contrast-color);
-        }
       }
 
       a:hover {
@@ -104,4 +101,16 @@ article.project {
       opacity: 1;
     }
   }
+}
+
+/*Dark theme*/
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light) {
+    article.project .project__extend-part .project__links a::before {
+      @include mixins.link_icon(1rem, vars.$contrast-color);
+    }
+  }
+}
+.theme-dark article.project .project__extend-part .project__links a::before {
+  @include mixins.link_icon(1rem, vars.$contrast-color);
 }

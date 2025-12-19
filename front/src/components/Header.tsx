@@ -5,9 +5,18 @@ import Menu from './Menu';
 
 export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: boolean, isMediumScreen: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuClosing, setisMenuClosing] = useState(false);
 
   function onMenuOpen() {
-    setIsMenuOpen(!isMenuOpen);
+    if(isMenuOpen) {
+      setisMenuClosing(true);
+      setTimeout(() => {
+        setIsMenuOpen(false);
+        setisMenuClosing(false);
+      }, 400);
+    } else {
+      setIsMenuOpen(true);
+    }
   }
 
   return (
@@ -17,13 +26,13 @@ export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: 
             <img src={Logo} alt="Logo" className='logo'/>
           </Link>
           {isMediumScreen ? (
-            <Menu className=""/>
+            <Menu className="" onMenuOpen={() => {}}/>
           ) : (
             <button type="button" onClick={onMenuOpen} className="burger-btn"></button>
           )}
         </div>
         {!isMediumScreen && isMenuOpen && (
-          <Menu className="open-burger"/>
+          <Menu className={isMenuClosing ? "closing open-burger burger" : isMenuOpen ? "open-burger burger" : " burger"} onMenuOpen={onMenuOpen}/>
         )}
         <div className='header__sub'>
           <div className="left"></div>

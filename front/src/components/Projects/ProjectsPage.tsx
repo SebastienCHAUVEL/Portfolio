@@ -18,14 +18,7 @@ export function ProjectsPage({
 
   // Toggle isExtend to extend a project on click and return true if another project is already extend
   function handleExtendDelay(index: number) {
-    let isExtendCopy = isExtend.map((_, i) => i === index);
-
-    // If current project is already extended we just close it
-    if (isExtend[index]) {
-      isExtendCopy = isExtend.map(() => false);
-      setIsExtend(isExtendCopy);
-      return false;
-    }
+    const isExtendCopy = isExtend.map((_, i) => i === index);
 
     // If no project is extended we just open it
     if(!isExtend.includes(true)) {
@@ -33,11 +26,19 @@ export function ProjectsPage({
       return false;
     } 
 
-    // Else, we start by closing all projects
     const allClosed = isExtend.map(() => false);
+
+    // If current project is already extended we just close it
+    if (isExtend[index]) {
+      setIsExtend(allClosed);
+      return false;
+    }
+
+
+    // Else, we start by closing all projects
     setIsExtend(allClosed);
 
-    // Then we open the project selected with delay for CSS animation
+    // Then we open the project selected after delay for CSS closing animation
     setTimeout(() => {
       setIsExtend(isExtendCopy);
     }, EXTEND_ANIMATION_DELAY); 

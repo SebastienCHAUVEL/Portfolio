@@ -1,6 +1,7 @@
 @use '../vars';
 @use '../mixins';
 
+/*General rules for all screens*/
 header {
   position: relative;
 }
@@ -12,6 +13,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0px calc(vars.$padding-main / 4);
+  position: relative;
+  z-index: 200;
 
   a {
     display: flex;
@@ -22,6 +25,7 @@ header {
     }
   }
 
+  /* Burger button for extra small to medium screen */
   .burger-btn {
     @include mixins.burger-menu(3rem, vars.$contrast-color);
     
@@ -31,18 +35,42 @@ header {
     }
   }
 }
-header nav {
-  a{
+
+@keyframes slideDown {
+  from {
+    top: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    top: calc(vars.$padding-main * 2);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    top: calc(vars.$padding-main * 2);
+    transform: translateY(0);
+  }
+  to {
+    top: 0;
+    transform: translateY(-100%);
+  }
+}
+
+header nav.burger {
+  a {
     &.current::before {
       content: "";
       @include mixins.brace(3rem, vars.$contrast-color, left);
     }
-    
     &.current::after {
       content: "";
       @include mixins.brace(3rem, vars.$contrast-color, right);
     }
   }
+  
+  /* Menu for extra small to medium screen */
   &.open-burger {
     display: flex;
     flex-direction: column;
@@ -50,26 +78,30 @@ header nav {
     width: 100%;
     background-color: color-mix(in srgb, var(--primary-color-dark) 90%, transparent);
     position: absolute;
-    right: 0;
-    bottom: 0;
-    transform: translateY(100%);
     z-index: 100;
     padding: 1rem;
     gap: 1rem;
+    animation: slideDown 0.5s ease-in-out;
 
+    &.closing {
+      animation: slideUp 0.5s ease-in-out;
+    }
+    
     a {
       font-weight: 500;
     }
-
     a:not(:nth-last-of-type(1)) {
       border-bottom: 2px solid var(--contrast-color-light);
     }
-
     a:hover {
       font-weight: 700;
-    } 
+    }
   }
-
+  
+  &:not(.open-burger) {
+    animation: slideUp 0.3s ease-in-out;
+  }
+  
   a {
     font-size: 1.5rem;
     color: var(--contrast-color) !important;
@@ -83,7 +115,31 @@ header nav {
   }
 }
 
+/* Small to Medium screen */
 @media #{vars.$small-screen} {
+  // Size of header_sup increases on this size of screen => change offset for visible menu
+  @keyframes slideDown {
+    from {
+      top: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      top: calc(vars.$padding-main * 3);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      top: calc(vars.$padding-main * 3);
+      transform: translateY(0);
+    }
+    to {
+      top: 0;
+      transform: translateY(-100%);
+    }
+  }
+
   .header__sup {
     height: calc(vars.$padding-main * 3);
     padding: 0px calc(vars.$padding-main / 2);
@@ -102,20 +158,21 @@ header nav {
   }
 }
 
+/* Medium to Large screen */
 @media #{vars.$medium-screen} { 
   header {
     position: absolute;
     width: 100%;
-  }
-  html:not(.theme-dark) header {    
     top: calc(vars.$padding-main * 2);
   }
 
+  /* Header top */
   .header__sup {
     height: calc(vars.$padding-main * 4);
     padding: 0px vars.$padding-main;
     width: 100%;
 
+    /* Menu for medium to extra large screen */
     nav {
       display: flex;
       justify-content: space-around;
@@ -127,6 +184,7 @@ header nav {
       a {
         font-size: 1.1rem;
         white-space: nowrap;
+        color: var(--contrast-color);
 
         &.current .text-link, 
         &:hover .text-link {
@@ -154,11 +212,16 @@ header nav {
     }
   }
 
+  /* Header bottom */
   .header__sub {
     position: absolute;
     top: calc(vars.$padding-main * 4);
     width: 100%;
     height: vars.$padding-main;
+
+    header.header--scrolled &{
+      opacity: 0;
+    }
 
     .left, .right {
       display: block;
@@ -176,6 +239,7 @@ header nav {
   }
 }
 
+/* Large to Extra large screen */
 @media #{vars.$large-screen} {
   .header__sup {
     gap: 2rem;
@@ -197,11 +261,37 @@ header nav {
       }
     }
   }
+}
 
-  .header__sub {
-    header.header--scrolled &, 
-    .theme-dark & {
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light) {
+    header .header__sub {
       opacity: 0;
+    } 
+    header nav.open-burger {
+      background-color: color-mix(in srgb, var(--primary-color-dark) 40%, var(--primary-color));
+      box-shadow: 0 3px 3px color-mix(in srgb, var(--primary-color-dark) 40%, var(--primary-color));
     }
   }
+}
+.theme-dark header .header__sub {
+    opacity: 0;
+}
+.theme-dark header nav.open-burger {
+  background-color: color-mix(in srgb, var(--primary-color-dark) 40%, var(--primary-color));
+  box-shadow: 0 3px 3px color-mix(in srgb, var(--primary-color-dark) 40%, var(--primary-color));
+}
+
+@media #{vars.$medium-screen} {
+  @media (prefers-color-scheme: dark)  {
+    html:not(.theme-light) {
+      header {
+        top: 0;
+      }
+    }
+  }
+.theme-dark header {
+  top: 0;
+}
 }
