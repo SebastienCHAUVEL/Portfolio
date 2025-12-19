@@ -1,27 +1,26 @@
-import { NavLink } from "react-router";
+import Menu from "./Menu";
 
 export default function Footer() {
   return(
     <footer>
-      <nav>
-        <NavLink 
-        className={({ isActive }) => (isActive ? "navlink current" : "navlink")}
-        to="/">
-          <span className="text-link">Projets</span>
-        </NavLink>
-        <NavLink 
-        className={({ isActive }) => (isActive ? "navlink current" : "navlink")}
-        to="/cv">
-          <span className="text-link">CV</span>
-        </NavLink>
-      </nav>
-      <div className="social">
-        <ul>
-          <li>
-        
+      <ul className="social">
+        <li>
+          <a id="mailto" href="mailto:monsieurchauvel22@gmail.com">E-mail</a>
           </li>
-        </ul>
-      </div>
+        <li>
+          <a id="github" href="https://github.com/SebastienCHAUVEL">Github</a>
+        </li>
+        <li>
+          <a id="linkedin" href="https://www.linkedin.com/in/s%C3%A9bastien-chauvel/">Linkedin</a>
+        </li>
+      </ul>
+      <Menu 
+        className="footer__menu"
+        onMenuOpen={()=>{}}
+      />
+      <p className="copyright">
+        © Sébastien Chauvel - {new Date().getFullYear()}
+      </p>
     </footer>
   )
 }

@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { ProjectsPage } from './components/Projects/ProjectsPage';
 import { Route, Routes } from 'react-router';
 import CvPage from './components/Cv/CvPage';
+import Footer from './components/Footer';
 
 function App() {
   const GAP_TOP_HEADER = 6 * 16;
@@ -62,6 +63,7 @@ function App() {
           />}/>
         </Routes>
       </main>
+      <Footer />
     </>
   )
 }

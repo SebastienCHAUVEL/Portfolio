@@ -53,7 +53,7 @@ article.project {
 
       a::before {
         content: '';
-        @include mixins.link_icon(1rem, vars.$primary-color);
+        @include mixins.link_icon(1rem, vars.$primary-color, "classic");
       }
 
       a:hover {
@@ -107,10 +107,10 @@ article.project {
 @media (prefers-color-scheme: dark) {
   html:not(.theme-light) {
     article.project .project__extend-part .project__links a::before {
-      @include mixins.link_icon(1rem, vars.$contrast-color);
+      @include mixins.link_icon(1rem, vars.$contrast-color, "classic");
     }
   }
 }
 .theme-dark article.project .project__extend-part .project__links a::before {
-  @include mixins.link_icon(1rem, vars.$contrast-color);
+  @include mixins.link_icon(1rem, vars.$contrast-color, "classic");
 }

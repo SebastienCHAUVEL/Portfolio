@@ -1,0 +1,100 @@
+@use '../vars';
+@use '../mixins';
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  background-color: var(--primary-color);
+  color: var(--contrast-color);
+  padding: 2rem 4rem;
+  gap: 2rem;
+
+  ul,
+  nav {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    a {
+      display: flex;
+      align-content: baseline;
+      
+      &.navlink::before {
+        content: "";
+        @include mixins.brace(2rem, vars.$contrast-color, left);
+        opacity: 0;
+      }
+      &.navlink::after {
+        content: "";
+        @include mixins.brace(2rem, vars.$contrast-color, right);
+        opacity: 0;
+      }
+      &.current::before,
+      &.current::after {
+        opacity: 1;
+      }
+    }
+
+    a:hover,
+    a.current {
+      transform: scale(1.02);
+      font-weight: 500;
+      transform: translateY(-5%);
+    }
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  nav {
+    align-items: center;
+
+    a{
+      align-items: center;
+    }
+  }
+
+  #mailto:before {
+    content: "";
+    @include mixins.link-icon(1rem, vars.$contrast-color, "mailto");
+  }
+  #github:before {
+    content: "";
+    @include mixins.link-icon(1rem, vars.$contrast-color, "github");
+  }
+  #linkedin:before {
+    content: "";
+    @include mixins.link-icon(1rem, vars.$contrast-color, "linkedin");
+  }
+}
+
+@media #{vars.$small-screen}  {
+  footer {
+    flex-direction: row;
+    position: relative;
+    padding-bottom: 4rem;
+    width: 100%;
+
+    .copyright {
+      position: absolute;
+      bottom: 1rem;
+      transform: translateX(-50%);
+      left: 50%;
+    }
+  }
+}
+
+@media #{vars.$large-screen}  {
+  footer {
+    padding: 2rem 15%;
+
+    .copyright {
+      bottom: 2rem;
+    }
+  }
+}
