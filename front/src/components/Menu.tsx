@@ -1,12 +1,20 @@
-import { NavLink } from "react-router";
-import type { MouseEvent } from 'react';
+import { NavLink, useNavigate } from "react-router";
+import type { MouseEvent } from "react";
 import { smoothScrollTo } from "../utils/utils";
 
 export default function Menu({ className, onMenuOpen } : { className: string, onMenuOpen: () => void }) {
-  function handleMenuClick(e: MouseEvent<HTMLAnchorElement>) {
+  const navigate = useNavigate();
+
+  function handleNavClick(e: MouseEvent<HTMLAnchorElement>, path: string) {
     e.preventDefault();
-    smoothScrollTo(0, 700);
+
+    // Notify parent on navlink click
     onMenuOpen();
+    
+    // Wait for the scroll to finish before navigate
+    smoothScrollTo(0, 500, undefined, () => {
+      navigate(path);
+    });
   }
 
   return (
@@ -14,13 +22,13 @@ export default function Menu({ className, onMenuOpen } : { className: string, on
       <NavLink 
       className={({ isActive }) => (isActive ? "navlink current" : "navlink")}
       to="/"
-      onClick={handleMenuClick}>
+      onClick={(e) => handleNavClick(e, '/')}>
         <span className="text-link">Projets</span>
       </NavLink>
       <NavLink 
       className={({ isActive }) => (isActive ? "navlink current" : "navlink")}
       to="/cv"
-      onClick={handleMenuClick}>
+      onClick={(e) => handleNavClick(e, '/cv')}>
         <span className="text-link">CV</span>
       </NavLink>
       {/* <NavLink 

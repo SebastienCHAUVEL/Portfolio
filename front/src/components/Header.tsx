@@ -1,14 +1,16 @@
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useState } from 'react'
-import type { MouseEvent } from 'react';
+import type { MouseEvent } from "react";
 
 import Menu from './Menu';
-import { smoothScrollTo } from '../utils/utils';
 import Logo from '../assets/portfolio.png'
+import { smoothScrollTo } from '../utils/utils';
 
 export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: boolean, isMediumScreen: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuClosing, setisMenuClosing] = useState(false);
+
+  const navigate = useNavigate();
 
   function onMenuOpen() {
     if(isMenuOpen) {
@@ -22,16 +24,20 @@ export function Header({ isStartScrolled, isMediumScreen } : { isStartScrolled: 
     }
   }
 
-  function handleLogoClick(e: MouseEvent<HTMLElement>) {
-    e.preventDefault();
-    smoothScrollTo(0, 700);
+  function handleLogoClick(e: MouseEvent<HTMLAnchorElement>) {
+      e.preventDefault();
+      
+      // Wait for the scroll to finish before navigate
+      smoothScrollTo(0, 500, undefined, () => {
+        navigate('/');
+      });
   }
 
   return (
       <header className={ isStartScrolled ? 'header--scrolled' : ''}>
         <div className='header__sup'>
-          <Link to="/">
-            <img src={Logo} alt="Logo" className='logo' onClick={handleLogoClick}/>
+          <Link to="/" onClick={handleLogoClick}>
+            <img src={Logo} alt="Logo" className='logo'/>
           </Link>
           {isMediumScreen ? (
             <Menu className="" onMenuOpen={() => {}}/>
